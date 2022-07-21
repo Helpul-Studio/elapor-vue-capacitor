@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Homepage from '../pages/HomePage.vue'
+import Loginpage from '../pages/LoginPage.vue'
 
 const routes = [
     {
@@ -22,7 +23,8 @@ const routes = [
         path: '/edit-profile'
     },
     {
-        path: '/login'
+        path: '/login',
+        component : Loginpage
     },
 ]
 

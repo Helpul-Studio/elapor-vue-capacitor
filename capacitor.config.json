@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.elapor",
+  "appName": "elapor",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

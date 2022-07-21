@@ -2,21 +2,72 @@
 </script>
 
 <template>
-    <div>
+    <div class="bg-white max-w-lg mx-auto">
 
+        <!-- top bar -->
+        <div class="bg-base-100 sticky px-5 top-0 left-0 right-0 z-20">
+            <div class="flex justify-between">
+                <img src="../../public/logo-polri.png" class="h-10 w-10 my-auto">
+                <p class="my-auto">E-report Police</p>
+                <button class="btn btn-ghost btn-circle capitalize">
+                    <img src="https://cdn-icons-png.flaticon.com/512/892/892781.png?w=360" class="w-7 h-7">
+                </button>
+            </div>
+        </div>
+        <!-- top bar -->
+
+        <main class=" mx-5 mt-10 grid gap-y-4 z-10 py-2">
+            <div class="flex justify-between">
+                <p>Pekerjaan Hari ini</p>
+                <p>Total pekerjaan : 3</p>
+            </div>
+            <input type="text" placeholder="cari pekerjaanmu disini" class="focus:outline-none input bg-gray-300 mb-4 input-sm" />
+            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md">
+                <div class="card-body">
+                    <h2 class="card-title">Mengawal Gubernur</h2>
+                    <p>Melakukan Pengawalan gubernur yang akan datang</p>
+                    <p>Tanggal : 20-01-2022</p>
+                    <div class="card-actions justify-end">
+                        <button class="btn btn-sm">Buat Laporan</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md">
+                <div class="card-body">
+                    <h2 class="card-title">Menertibkan Lalu Lintas</h2>
+                    <p>Adapun lalu lintas yang ditertibkan yakni....</p>
+                    <p>Tanggal : 17-05-2022</p>
+                    <div class="card-actions justify-end">
+                    <button class="btn btn-sm">Buat Laporan</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md">
+                <div class="card-body">
+                    <h2 class="card-title">Melakukan Audit</h2>
+                    <p>Melakukan Audit berdasarkan pekerjaan yang telah ditugaskan terhadap anggota</p>
+                    <p>Tanggal : 17-05-2022</p>
+                    <div class="card-actions justify-end">
+                    <button class="btn btn-sm">Buat Laporan</button>
+                    </div>
+                </div>
+            </div>
+        </main>
 
         <!-- bottom bar -->
-        <div class="bg-gray-800 px-5 bottom-0 left-0 right-0 absolute">
+        <div class="bg-base-100 sticky px-5 py-3 bottom-0 left-0 right-0">
             <div class="flex justify-between">
-                <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
-                <button class="btn btn-ghost btn-circle">
+                <button class="btn btn-ghost btn-circle capitalize my-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" class="text-white" height="24" width="24"><path d="M4.5 20.5v-9.25l-1.875 1.425-.9-1.2L12 3.625l10.275 7.85-.9 1.175-1.875-1.4v9.25ZM6 19h12v-8.9l-6-4.575L6 10.1Zm0 0h12H6Zm2-4.125q-.375 0-.625-.25T7.125 14q0-.375.25-.625t.625-.25q.375 0 .625.25t.25.625q0 .375-.25.625t-.625.25Zm4 0q-.375 0-.625-.25t-.25-.625q0-.375.25-.625t.625-.25q.375 0 .625.25t.25.625q0 .375-.25.625t-.625.25Zm4 0q-.375 0-.625-.25t-.25-.625q0-.375.25-.625t.625-.25q.375 0 .625.25t.25.625q0 .375-.25.625t-.625.25Z"/></svg>
+                    Pekerjaan
                 </button>
-                <button class="btn btn-ghost btn-circle">
-                    <div class="indicator">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-                        <span class="badge badge-xs badge-primary indicator-item"></span>
-                    </div>
+                <button class="btn btn-ghost btn-circle capitalize">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m10.95 17.425 5.3-5.3-1.075-1.075-4.25 4.225-2.1-2.125-1.075 1.075ZM6.3 21.5q-.75 0-1.275-.525Q4.5 20.45 4.5 19.7V4.3q0-.75.525-1.275Q5.55 2.5 6.3 2.5h7.95l5.25 5.25V19.7q0 .75-.525 1.275-.525.525-1.275.525Zm7.2-13V4H6.3q-.1 0-.2.1t-.1.2v15.4q0 .1.1.2t.2.1h11.4q.1 0 .2-.1t.1-.2V8.5ZM6 4v4.5V4 20 4Z"/></svg>
+                    Histori
+                </button>
+                <button class="btn btn-ghost btn-circle capitalize">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5.4 21q-.75 0-1.275-.525Q3.6 19.95 3.6 19.2V5.3q0-.75.525-1.275Q4.65 3.5 5.4 3.5h6.725V5H5.4q-.1 0-.2.1t-.1.2v13.9q0 .1.1.2t.2.1h6.725V21Zm10.725-4.475-1.025-1.1L17.525 13h-8.4v-1.5h8.4L15.1 9.075l1.025-1.1L20.4 12.25Z"/></svg>
+                    Keluar
                 </button>
             </div>
         </div>
