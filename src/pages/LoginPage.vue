@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="max-w-lg">
+    <div class="max-w-lg mx-auto">
         <div class="min-h-full mt-20 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div class="w-full space-y-8">
             <div>
