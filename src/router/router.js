@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Homepage from '../pages/HomePage.vue'
 import Loginpage from '../pages/LoginPage.vue'
+import Historypage from '../pages/HistoryPage.vue'
+import ProfilePage from '../pages/ProfilePage.vue'
 
 const routes = [
     {
@@ -11,13 +13,15 @@ const routes = [
         path: '/reporting'
     },
     {
-        path: '/reporting-history'
+        path: '/reporting-history',
+        component : Historypage
     },
     {
         path: '/reporting-detail'
     },
     {
-        path: '/profile'
+        path: '/profile',
+        component : ProfilePage
     },
     {
         path: '/edit-profile'
