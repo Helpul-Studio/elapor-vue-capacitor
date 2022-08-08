@@ -3,6 +3,8 @@ import Homepage from '../pages/HomePage.vue'
 import Loginpage from '../pages/LoginPage.vue'
 import Historypage from '../pages/HistoryPage.vue'
 import ProfilePage from '../pages/ProfilePage.vue'
+import WorkingPage from '../pages/WorkingPage.vue'
+import ReportPage from '../pages/ReportPage.vue'
 
 const routes = [
     {
@@ -10,7 +12,12 @@ const routes = [
         component : Homepage
     },
     {
-        path: '/reporting'
+        path: '/working',
+        component : WorkingPage
+    },
+    {
+        path: '/reporting',
+        component: ReportPage
     },
     {
         path: '/reporting-history',

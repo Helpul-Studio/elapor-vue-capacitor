@@ -11,38 +11,47 @@ import Topbar from '../components/Topbar.vue';
         <!-- top bar -->
 
         <main class=" mx-5 mt-10 grid mb-20 gap-y-4 z-10 py-2">
+            <div class="carousel carousel-center max-w-md p-4 space-x-4 bg-white rounded-box">
+                <div class="carousel-item">
+                    <img src="https://polressorong.com/wp-content/uploads/2021/08/WhatsApp-Image-2021-08-20-at-09.40.31.jpeg" class="rounded-box h-48 w-60" />
+                </div>
+                <div class="carousel-item">
+                    <img src="https://polressorong.com/wp-content/uploads/2021/08/WhatsApp-Image-2021-08-20-at-09.40.31.jpeg" class="rounded-box h-48 w-60" />
+                </div>
+                <div class="carousel-item">
+                    <img src="https://polressorong.com/wp-content/uploads/2021/08/WhatsApp-Image-2021-08-20-at-09.40.31.jpeg" class="rounded-box h-48 w-60" />
+                </div>
+            </div>
             <div class="flex justify-between">
-                <p>Pekerjaan Hari ini</p>
-                <p>Total pekerjaan : 3</p>
+                <p class="text-md font-bold text-center border-rose-800 bg-slate-800 w-full border-y-2 py-2 text-white">Pengumuman/Berita</p>
             </div>
-            <input type="text" placeholder="cari pekerjaanmu disini" class="focus:outline-none input bg-gray-300 mb-4 input-sm" />
-            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md">
+            <div class="card card-side bg-base-100 shadow-xl">
+                <figure><img src="https://akcdn.detik.net.id/community/media/visual/2022/01/17/mahfud-md_169.jpeg?" class="w-32 h-full" alt="Movie"></figure>
                 <div class="card-body">
-                    <h2 class="card-title">Mengawal Gubernur</h2>
-                    <p>Melakukan Pengawalan gubernur yang akan datang</p>
-                    <p>Tanggal : 20-01-2022</p>
+                    <h2 class="card-title">Mahfud soal Ferdy Sambo: Pemeriksaan Etik Mudahkan Pengusutan Pidana</h2>
+                    <p>Klik tombol dibawah untuk membaca.</p>
                     <div class="card-actions justify-end">
-                        <button class="btn btn-sm">Buat Laporan</button>
+                    <button class="btn btn-sm capitalize">Selengkapnya</button>
                     </div>
                 </div>
             </div>
-            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md">
+            <div class="card card-side bg-base-100 shadow-xl">
+                <figure><img src="https://thumb.tvonenews.com/thumbnail/2022/08/06/62ee3868187e5-penyelidikan-pelemparan-bus_665_374.jpg" class="w-32 h-full" alt="Movie"></figure>
                 <div class="card-body">
-                    <h2 class="card-title">Menertibkan Lalu Lintas</h2>
-                    <p>Adapun lalu lintas yang ditertibkan yakni....</p>
-                    <p>Tanggal : 17-05-2022</p>
+                    <h2 class="card-title">Bus jadi Korban Lemparan Batu di Tol Lampung, Polda Lampung Tangkap 9 Orang, Pelakunya Masih Anak-anak</h2>
+                    <p>Klik tombol dibawah untuk membaca.</p>
                     <div class="card-actions justify-end">
-                    <button class="btn btn-sm">Buat Laporan</button>
+                    <button class="btn btn-sm capitalize">Selengkapnya</button>
                     </div>
                 </div>
             </div>
-            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md">
+            <div class="card card-side bg-base-100 shadow-xl">
+                <figure><img src="https://polressorong.com/wp-content/uploads/2021/08/WhatsApp-Image-2021-08-20-at-09.40.31.jpeg" class="w-32 h-full" alt="Movie"></figure>
                 <div class="card-body">
-                    <h2 class="card-title">Melakukan Audit</h2>
-                    <p>Melakukan Audit berdasarkan pekerjaan yang telah ditugaskan terhadap anggota</p>
-                    <p>Tanggal : 17-05-2022</p>
+                    <h2 class="card-title">Apel pagi wujud pendisiplinan Anggota Polri sebelum melaksanakan kegiatan Kepolisian</h2>
+                    <p>Klik tombol dibawah untuk membaca.</p>
                     <div class="card-actions justify-end">
-                    <button class="btn btn-sm">Buat Laporan</button>
+                    <button class="btn btn-sm capitalize">Selengkapnya</button>
                     </div>
                 </div>
             </div>
