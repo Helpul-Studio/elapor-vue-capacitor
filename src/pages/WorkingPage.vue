@@ -2,9 +2,16 @@
 import Bottombar from '../components/Bottombar.vue';
 import Topbar from '../components/Topbar.vue';
 // import Select2 from 'vue3-select2-component';
+import { useJobtaskStore } from '../store/jobtask-store';
+import { computed, onMounted } from 'vue';
 
+const jobtaskStore = useJobtaskStore()
 
+const jobtasks = computed(() => jobtaskStore.getJobtask)
 
+onMounted(() => {
+    jobtaskStore.fetchJobTask()
+})
 
 </script>
 
@@ -22,33 +29,13 @@ import Topbar from '../components/Topbar.vue';
                 <router-link to="/reporting" class="btn btn-sm">Buat Laporan Isidentil</router-link>
             </div>
             <input type="text" placeholder="cari pekerjaanmu disini" class="focus:outline-none input bg-gray-300 mb-4 input-sm" />
-            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md">
+            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md" v-for="jobtask in jobtasks" :key="jobtask.job_task_id">
                 <div class="card-body">
                     <h2 class="card-title">Mengawal Gubernur</h2>
                     <p>Melakukan Pengawalan gubernur yang akan datang</p>
                     <p>Tanggal : 20-01-2022</p>
                     <div class="card-actions justify-end">
                         <button class="btn btn-sm">Buat Laporan</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md">
-                <div class="card-body">
-                    <h2 class="card-title">Menertibkan Lalu Lintas</h2>
-                    <p>Adapun lalu lintas yang ditertibkan yakni....</p>
-                    <p>Tanggal : 17-05-2022</p>
-                    <div class="card-actions justify-end">
-                    <button class="btn btn-sm">Buat Laporan</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md">
-                <div class="card-body">
-                    <h2 class="card-title">Melakukan Audit</h2>
-                    <p>Melakukan Audit berdasarkan pekerjaan yang telah ditugaskan terhadap anggota</p>
-                    <p>Tanggal : 17-05-2022</p>
-                    <div class="card-actions justify-end">
-                    <button class="btn btn-sm">Buat Laporan</button>
                     </div>
                 </div>
             </div>
