@@ -1,6 +1,11 @@
 <script setup>
 import Bottombar from '../components/Bottombar.vue';
 import Topbar from '../components/Topbar.vue';
+// import Select2 from 'vue3-select2-component';
+
+
+
+
 </script>
 
 <template>
