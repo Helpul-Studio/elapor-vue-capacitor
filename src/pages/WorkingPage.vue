@@ -31,9 +31,10 @@ onMounted(() => {
             <input type="text" placeholder="cari pekerjaanmu disini" class="focus:outline-none input bg-gray-300 mb-4 input-sm" />
             <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md" v-for="jobtask in jobtasks" :key="jobtask.job_task_id">
                 <div class="card-body">
-                    <h2 class="card-title">Mengawal Gubernur</h2>
-                    <p>Melakukan Pengawalan gubernur yang akan datang</p>
-                    <p>Tanggal : 20-01-2022</p>
+                    <h2 class="card-title">{{jobtask.jobtask.job_task_name}}</h2>
+                    <p>Tanggal : {{jobtask.jobtask.job_task_date}}</p>
+                    <p>Lokasi : {{jobtask.jobtask.job_task_place}}</p>
+                    <p>Status : {{jobtask.jobtask.job_task_status}}</p>
                     <div class="card-actions justify-end">
                         <button class="btn btn-sm">Buat Laporan</button>
                     </div>

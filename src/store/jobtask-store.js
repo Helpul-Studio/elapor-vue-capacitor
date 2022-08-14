@@ -17,7 +17,7 @@ export const useJobtaskStore = defineStore({
     getters: {
         getJobtask: (state) => state.jobTask,
         getJobtaskDetail: (state) => state.jobTaskDetail,
-        jobTaskReporting: (state) => state.jobTaskReporting
+        getJobTaskReporting: (state) => state.jobTaskReporting
     },
 
     actions: {

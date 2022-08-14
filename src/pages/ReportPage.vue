@@ -6,7 +6,11 @@ import Topbar from '../components/Topbar.vue';
 
 import CKEditor from '@ckeditor/ckeditor5-vue'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { reactive } from '@vue/reactivity';
 
+const reporting = reactive({
+    factos: ''
+})
 
 
 const data = ['karyawan1', 'karyawan2', 'karyawan3']
@@ -92,7 +96,7 @@ const configEditor = {
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700"> Fakta - fakta </label>
-                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor"></ckeditor>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.factos"></ckeditor>
                                 </div>
 
                                 <div>
