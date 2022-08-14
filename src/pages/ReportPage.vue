@@ -2,25 +2,48 @@
 import Bottombar from '../components/Bottombar.vue';
 import Topbar from '../components/Topbar.vue';
 
+import { useJobtaskStore } from '../store/jobtask-store';
 
-
-import CKEditor from '@ckeditor/ckeditor5-vue'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { reactive } from '@vue/reactivity';
 
+import { Geolocation } from '@capacitor/geolocation';
+import { onMounted } from '@vue/runtime-core';
+import { ref } from 'vue';
+
+
+const jobtaskStore = useJobtaskStore()
+
+let images = ref('')
+
 const reporting = reactive({
-    factos: ''
+    latitude: null,
+    longitude: null,
+    image: ''
 })
 
+let file = ref(null)
 
-const data = ['karyawan1', 'karyawan2', 'karyawan3']
-    
-const editor = ClassicEditor
-const ckeditor = CKEditor.component
-const configEditor = {
-    items: [ 'bold', 'italic', '|', 'undo', 'redo', '-', 'numberedList', 'bulletedList' ],
-    shouldNotGroupWhenFull: true
+const getCurrentPosition = async () => {
+      const pos = await Geolocation.getCurrentPosition();
+    //   console.log(pos)
+      reporting.longitude = pos.coords.longitude
+      reporting.latitude = pos.coords.latitude
+    };
+
+getCurrentPosition()
+
+const handleFileUpload = async(e) => {
+    console.log(e.target.files[0].name)
+    reporting.image = e.target.files[0].name
+    file = e.target.files[0]
+    images.value = URL.createObjectURL(file)
 }
+
+const send = () => {
+    console.log('run')
+    jobtaskStore.sendReport(reporting)
+}
+
 
 </script>
 
@@ -51,95 +74,32 @@ const configEditor = {
         <div>
             <div class="md:grid md:gap-6">
                 <div class="mt-5 ">
-                    <form action="#" method="POST">
+                    <form @submit.prevent="send" enctype="multipart/form-data">
                         <div class="shadow sm:rounded-md sm:overflow-hidden">
                             <p class="text-xl text-center font-bold">Form Laporan</p>
                             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                 <div class="grid">
-                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Perihal </label>
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Lokasi(Jangan Diubah) </label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
-                                        <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" placeholder="perihal">
+                                        <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" v-model="reporting.longitude" placeholder="longitude" disabled>
                                     </div>
                                 </div>
 
                                 <div class="grid">
-                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Bidang </label>
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Lokasi(Jangan Diubah) </label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
-                                        <select name="" id="" class="w-full p-2 text-sm rounded-md">
-                                            <option value="">Sosial Budaya</option>
-                                            <option value="">Keamanan</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="grid">
-                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Sumber Informasi </label>
-                                    <div class="mt-1 flex rounded-md shadow-sm">
-                                        <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" placeholder="sumber informasi">
-                                    </div>
-                                </div>
-
-                                <div class="grid">
-                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Waktu Pelaksanaan </label>
-                                    <div class="mt-1 flex rounded-md shadow-sm">
-                                        <input type="date" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" placeholder="sumber informasi">
-                                    </div>
-                                </div>
-
-                                <!-- diganti dengan select 2 -->
-                                <div class="grid">
-                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Anggota Pelaksana </label>
-                                    <div class="mt-1 flex rounded-md shadow-sm">
-                                        <select2 :data="data" :value="data"></select2>
+                                        <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" v-model="reporting.latitude" placeholder="latitude" disabled>
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700"> Fakta - fakta </label>
-                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.factos"></ckeditor>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700"> Analisa </label>
-                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor"></ckeditor>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700"> Prediksi </label>
-                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor"></ckeditor>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700"> Langkah - Langkah yang diambil </label>
-                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor"></ckeditor>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700"> Rekomendasi </label>
-                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor"></ckeditor>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700"> Foto Laporan </label>
-                                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                        <div class="space-y-1 text-center">
-                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        <div class="flex text-sm text-gray-600">
-                                            <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                            <span>Upload a file</span>
-                                            <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                            </label>
-                                            <p class="pl-1">or drag and drop</p>
-                                        </div>
-                                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                                        </div>
-                                    </div>
+                                    <img v-show="images" :src="images" />
+                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload file</label>
+                                    <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" ref="file" @change="handleFileUpload" multiple="multiple">
                                 </div>
                             </div>
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                <router-link to="/reporting-history" type="button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white btn focus:outline-none">Kirim Laporan</router-link>
+                                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white btn focus:outline-none">Kirim Laporan</button>
                             </div>
                         </div>
                     </form>

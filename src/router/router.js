@@ -5,6 +5,7 @@ import Historypage from '../pages/HistoryPage.vue'
 import ProfilePage from '../pages/ProfilePage.vue'
 import WorkingPage from '../pages/WorkingPage.vue'
 import ReportPage from '../pages/ReportPage.vue'
+import ReportIsidentilPage from '../pages/ReportIsidentilPage.vue'
 import DetailNewsPage from '../pages/DetailNewsPage.vue'
 
 const routes = [
@@ -19,6 +20,10 @@ const routes = [
     {
         path: '/reporting',
         component: ReportPage
+    },
+    {
+        path: '/reporting-isidentil',
+        component: ReportIsidentilPage
     },
     {
         path: '/reporting-history',
