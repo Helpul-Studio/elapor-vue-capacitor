@@ -1,17 +1,39 @@
 <script setup>
 import Bottombar from '../components/Bottombar.vue';
 import Topbar from '../components/Topbar.vue';
-
-
+import { useIsidentilStore } from '../store/isidentil-store';
 
 import CKEditor from '@ckeditor/ckeditor5-vue'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { reactive } from '@vue/reactivity';
 
+const isidentilStore = useIsidentilStore()
+
+let images = ref('')
+
 const reporting = reactive({
-    factos: ''
+    location_latitude : null,
+    location_longitude : null,
+    jobtask_documentation : images,
+    report_about : null,
+    report_source_information : null,
+    report_date : null,
+    report_place : null,
+    report_activities : null,
+    report_analysis : null,
+    report_prediction : null,
+    report_steps_taken : null,
+    report_recomendation : null
 })
 
+const handleFileUpload = async(e) => {
+    console.log(e.target.files[0])
+    reporting.jobtask_documentation = e.target.files[0]
+}
+
+const send = () => {
+    isidentilStore.sendIsidentil(reporting)
+}
 
 const data = ['karyawan1', 'karyawan2', 'karyawan3']
     

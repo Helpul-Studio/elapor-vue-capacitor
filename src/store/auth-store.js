@@ -7,7 +7,7 @@ const baseUrl = 'https://elapor.helpulstudio.com/api';
 export const useAuthStore = defineStore({
     id: 'auth',
     state: () => ({
-        token: '3|j9JfZaRBJYO9rlW0qLeefvY85EZUmFquSJqeXbir',
+        token: '',
         user : []
     }),
 
@@ -24,6 +24,7 @@ export const useAuthStore = defineStore({
             }).then(result => {
                 console.log(result.data.data.access_token)
                 this.token = result.data.data.access_token
+                console.log(this.token)
                 router.push('/')
             }).catch(err => {
                 alert(err.response.data.meta.message)

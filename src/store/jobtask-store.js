@@ -11,15 +11,15 @@ export const useJobtaskStore = defineStore({
        jobTask : [],
        jobTaskDetail : null,
        jobTaskId : null,
-       jobTaskReporting : null
+       jobTaskAssigned : null
     }),
 
 
     getters: {
         getJobtask: (state) => state.jobTask,
+        getJobtaskAssigned: (state) => state.jobTaskAssigned,
         getJobtaskDetail: (state) => state.jobTaskDetail,
         getJobTaskId: (state) => state.jobTaskId,
-        getJobTaskReporting: (state) => state.jobTaskReporting
     },
 
     actions: {
@@ -31,17 +31,18 @@ export const useJobtaskStore = defineStore({
                     Authorization: `Bearer ${token}`
                 }
             }).then(result => {
-                // console.log(result.data.data)
+                console.log(result.data.data)
                 this.jobTask = result.data.data
-                // this.jobTask = this.jobTask.filter(job => job.jobtask.job_task_status === 'Ditugaskan')
+                this.jobTaskAssigned = this.jobTask.filter(job => job.jobtask.job_task_status === 'Ditugaskan').length
                 // console.log(this.jobTask)
             }).catch(err => {
                 alert(err.response.data.meta.message)
             })
         },
 
-        createReport(state){
-            this.jobTaskId = state
+        createReport(...state){
+            this.jobTaskId = state[1]
+            console.log(state)
             console.log(this.jobTaskId)
             router.push('/reporting')
         },
@@ -49,21 +50,27 @@ export const useJobtaskStore = defineStore({
         sendReport(state){
             const authStore = useAuthStore()
             const token = authStore.getToken
-            console.log(state.latitude)
-            console.log(state.image)
+            // console.log(state.latitude)
+            console.log(state.jobtask_documentation)
 
             let formData = new FormData()
-            // data.append('location_latitude', state.latitude)
-            // data.append('location_longitude', state.longitude)
-            // data.append('jobtask_documentation', state.image)
             formData.append('location_latitude', state.latitude)
             formData.append('location_longitude', state.longitude)
-            formData.append('jobtask_documentation', state.image)
+            formData.append('jobtask_documentation', state.jobtask_documentation)
+            formData.append('report_about', state.report_about)
+            formData.append('report_source_information', state.report_source_information)
+            formData.append('report_date', state.report_date)
+            formData.append('report_place', state.report_place)
+            formData.append('report_activities', state.report_activities)
+            formData.append('report_analysis', state.report_analysis)
+            formData.append('report_prediction', state.report_prediction)
+            formData.append('report_steps_taken', state.report_steps_taken)
+            formData.append('report_recommendation', state.report_recomendation)
             // console.log(data.values)
 
             axios({
                 method: 'post',
-                url: `${baseUrl}/jobtask-result/3`,
+                url: `${baseUrl}/jobtask-result/${this.jobTaskId}`,
                 data: formData,
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -82,6 +89,25 @@ export const useJobtaskStore = defineStore({
                 // }
             ).then(result => {
                 console.log(result)
+                alert(result)
+            }).catch(err => {
+                console.log(err)
+                alert(err)
+            })
+        },
+
+        getReport(state){
+            const authStore = useAuthStore()
+            const token = authStore.getToken
+            axios.get(`${baseUrl}/jobtask-result/${state}`, 
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(result => {
+                console.log(result.data.data[0].jobtask_result[0])
+                this.jobTaskDetail = result.data.data[0].jobtask_result[0]
+                router.push('/detail-reporting')
             }).catch(err => {
                 console.log(err)
             })

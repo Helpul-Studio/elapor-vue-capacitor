@@ -49,6 +49,21 @@ export const useIsidentilStore = defineStore({
             }).catch(err => {
                 console.log(err)
             })
+        },
+
+        getIsidentil(){
+            const authStore = useAuthStore()
+            const token = authStore.getToken
+            axios.get(`${baseUrl}/report-data`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(result => {
+                console.log(result.data.data)
+                this.isidentilReportingData = result.data.data
+            }).catch(err => {
+                console.log(err)
+            })
         }
     }
 

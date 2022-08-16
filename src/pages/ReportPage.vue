@@ -10,6 +10,15 @@ import { Geolocation } from '@capacitor/geolocation';
 import { onMounted } from '@vue/runtime-core';
 import { ref } from 'vue';
 
+import CKEditor from '@ckeditor/ckeditor5-vue'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+
+const editor = ClassicEditor
+const ckeditor = CKEditor.component
+const configEditor = {
+    items: [ 'bold', 'italic', '|', 'undo', 'redo', '-', 'numberedList', 'bulletedList' ],
+    shouldNotGroupWhenFull: true
+}
 
 const jobtaskStore = useJobtaskStore()
 
@@ -20,10 +29,18 @@ let images = ref('')
 const reporting = reactive({
     latitude: null,
     longitude: null,
-    image: images
+    jobtask_documentation: images,
+    report_about : null,
+    report_source_information : null,
+    report_date : null,
+    report_place : null,
+    report_activities : null,
+    report_analysis : null,
+    report_prediction : null,
+    report_steps_taken : null,
+    report_recomendation : null
 })
 
-let file = ref(null)
 
 const getCurrentPosition = async () => {
       const pos = await Geolocation.getCurrentPosition();
@@ -35,14 +52,21 @@ const getCurrentPosition = async () => {
 getCurrentPosition()
 
 const handleFileUpload = async(e) => {
-    reporting.image = e.target.files[0]
+    console.log(e.target.files[0])
+    reporting.jobtask_documentation = e.target.files[0]
     // file = e.target.files[0]
     images.value = e.target.files[0]
-    file.value = URL.createObjectURL(images.value)
+    console.log(images.value)
+
+    let file = e.target.files[0]
+    showImages = (URL.createObjectURL(file))
+
+    console.log(showImages)
 }
 
 const send = () => {
     console.log('run')
+    console.log(reporting.jobtask_documentation)
     jobtaskStore.sendReport(reporting)
 }
 
@@ -94,10 +118,63 @@ const send = () => {
                                     </div>
                                 </div>
 
+                                <div class="grid">
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Perihal </label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" v-model="reporting.about" placeholder="Perihal">
+                                    </div>
+                                </div>
+
+                                <div class="grid">
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Sumber Informasi </label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" v-model="reporting.report_source_information" placeholder="Perihal">
+                                    </div>
+                                </div>
+
+                                <div class="grid">
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Tanggal </label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <input type="date" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" v-model="reporting.report_date" placeholder="Tanggal">
+                                    </div>
+                                </div>
+
                                 <div>
-                                    <img v-show="images" :src="images" />
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload file</label>
-                                    <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" ref="file" @change="handleFileUpload" multiple="multiple">
+                                    <img :src="showImages" />
+                                    <label class="block mb-2 bg-slate text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload file</label>
+                                    <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" ref="file" @change="handleFileUpload" >
+                                </div>
+
+                                <div class="grid">
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Tempat Kejadian </label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" v-model="reporting.report_place" placeholder="Tempat Kejadian">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700"> Aktivitas dan Fakta </label>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.report_activities"></ckeditor>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700"> Analisa </label>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.report_analysis"></ckeditor>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700"> Prediksi </label>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.report_prediction"></ckeditor>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700"> Langkah yang diambil </label>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.report_steps_taken"></ckeditor>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700"> Rekomendasi </label>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.report_recomendation"></ckeditor>
                                 </div>
                             </div>
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
