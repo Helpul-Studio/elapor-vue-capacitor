@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">elapor</string>
-    <string name="title_activity_main">elapor</string>
-    <string name="package_name">com.example.elapor</string>
-    <string name="custom_url_scheme">com.example.elapor</string>
+    <string name="app_name">elapor app</string>
+    <string name="title_activity_main">elapor app</string>
+    <string name="package_name">com.elapor.app</string>
+    <string name="custom_url_scheme">com.elapor.app</string>
 </resources>

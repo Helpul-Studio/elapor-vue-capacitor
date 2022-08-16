@@ -8,11 +8,13 @@ const baseUrl = 'https://elapor.helpulstudio.com/api';
 export const useNewsStore = defineStore({
     id: 'news',
     state: () => ({
-        news : []
+        news : [],
+        newsDetail : ''
     }),
 
     getters: {
-        getNews: (state) => state.news
+        getNews: (state) => state.news,
+        getNewsDetails: (state) => state.newsDetail
     },
 
     actions: {
@@ -24,9 +26,17 @@ export const useNewsStore = defineStore({
                 Authorization: `Bearer ${token}`
             }).then(result => {
                 console.log(result.data.data)
+                this.news = result.data.data
             }).catch(err => {
                 alert(err.response.data.meta.message)
             })
+        },
+
+        fetchDetailNews(state){
+            console.log(state)
+            this.newsDetail = this.news[state]
+            console.log(this.newsDetail)
+            router.push('/news-detail')
         }
     }
 })

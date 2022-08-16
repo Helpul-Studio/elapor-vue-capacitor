@@ -1,6 +1,6 @@
 {
-	"appId": "com.example.elapor",
-	"appName": "elapor",
+	"appId": "com.elapor.app",
+	"appName": "elapor app",
 	"webDir": "dist",
 	"bundledWebRuntime": false
 }
