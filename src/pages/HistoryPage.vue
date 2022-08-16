@@ -34,7 +34,7 @@ import Topbar from '../components/Topbar.vue';
                     <p>Tanggal : 17-05-2022</p>
                     <div class="card-actions justify-end grid">
                         <p class="badge badge-success w-full">Laporan diterima</p>
-                        <button class="btn btn-sm">Lihat Detail Laporan</button>
+                        <button class="btn btn-sm">Cek Tindak Lanjut</button>
                     </div>
                 </div>
             </div>

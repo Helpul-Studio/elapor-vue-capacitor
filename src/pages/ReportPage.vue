@@ -2,8 +2,14 @@
 import Bottombar from '../components/Bottombar.vue';
 import Topbar from '../components/Topbar.vue';
 
+
+
 import CKEditor from '@ckeditor/ckeditor5-vue'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+
+
+
+const data = ['karyawan1', 'karyawan2', 'karyawan3']
     
 const editor = ClassicEditor
 const ckeditor = CKEditor.component
@@ -41,33 +47,76 @@ const configEditor = {
         <div>
             <div class="md:grid md:gap-6">
                 <div class="mt-5 ">
-                <form action="#" method="POST">
-                    <div class="shadow sm:rounded-md sm:overflow-hidden">
-                        <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                            <div class="grid grid-cols-3 gap-6">
-                                <div class="col-span-3 sm:col-span-2">
+                    <form action="#" method="POST">
+                        <div class="shadow sm:rounded-md sm:overflow-hidden">
+                            <p class="text-xl text-center font-bold">Form Laporan</p>
+                            <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                                <div class="grid">
                                     <label for="company-website" class="block text-sm font-medium text-gray-700"> Perihal </label>
-                                        <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="www.example.com">
-                                        </div>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" placeholder="perihal">
+                                    </div>
+                                </div>
+
+                                <div class="grid">
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Bidang </label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <select name="" id="" class="w-full p-2 text-sm rounded-md">
+                                            <option value="">Sosial Budaya</option>
+                                            <option value="">Keamanan</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="grid">
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Sumber Informasi </label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" placeholder="sumber informasi">
+                                    </div>
+                                </div>
+
+                                <div class="grid">
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Waktu Pelaksanaan </label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <input type="date" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" placeholder="sumber informasi">
+                                    </div>
+                                </div>
+
+                                <!-- diganti dengan select 2 -->
+                                <div class="grid">
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Anggota Pelaksana </label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <select2 :data="data" :value="data"></select2>
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label for="about" class="block text-sm font-medium text-gray-700"> About </label>
-                                    <div class="mt-1">
-                                        <textarea  id="about" name="about" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="you@example.com"></textarea>
-                                    </div>
-                                    <p class="mt-2 text-sm text-gray-500">Brief description for your profile. URLs are hyperlinked.</p>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700"> Perkara </label>
+                                    <label class="block text-sm font-medium text-gray-700"> Fakta - fakta </label>
                                     <ckeditor :editor="editor" class="w-20"  :config="configEditor"></ckeditor>
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700"> Cover photo </label>
+                                    <label class="block text-sm font-medium text-gray-700"> Analisa </label>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor"></ckeditor>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700"> Prediksi </label>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor"></ckeditor>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700"> Langkah - Langkah yang diambil </label>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor"></ckeditor>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700"> Rekomendasi </label>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor"></ckeditor>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700"> Foto Laporan </label>
                                     <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                         <div class="space-y-1 text-center">
                                         <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -86,7 +135,7 @@ const configEditor = {
                                 </div>
                             </div>
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+                                <router-link to="/reporting-history" type="button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white btn focus:outline-none">Kirim Laporan</router-link>
                             </div>
                         </div>
                     </form>
@@ -104,7 +153,7 @@ const configEditor = {
 
 <style>
 .ck.ck-editor {
-    max-width: 400px
+    max-width: 350px
 }
 
 .ck.ck-content ul,
