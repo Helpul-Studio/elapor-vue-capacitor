@@ -95,6 +95,7 @@ const configEditor = {
                                 </div>
 
                                 <div>
+                                    {{reporting.factos}}
                                     <label class="block text-sm font-medium text-gray-700"> Fakta - fakta </label>
                                     <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.factos"></ckeditor>
                                 </div>

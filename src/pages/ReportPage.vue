@@ -13,12 +13,14 @@ import { ref } from 'vue';
 
 const jobtaskStore = useJobtaskStore()
 
+let showImages = ref('')
+
 let images = ref('')
 
 const reporting = reactive({
     latitude: null,
     longitude: null,
-    image: ''
+    image: images
 })
 
 let file = ref(null)
@@ -33,10 +35,10 @@ const getCurrentPosition = async () => {
 getCurrentPosition()
 
 const handleFileUpload = async(e) => {
-    console.log(e.target.files[0].name)
-    reporting.image = e.target.files[0].name
-    file = e.target.files[0]
-    images.value = URL.createObjectURL(file)
+    reporting.image = e.target.files[0]
+    // file = e.target.files[0]
+    images.value = e.target.files[0]
+    file.value = URL.createObjectURL(images.value)
 }
 
 const send = () => {

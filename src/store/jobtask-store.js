@@ -52,16 +52,19 @@ export const useJobtaskStore = defineStore({
             console.log(state.latitude)
             console.log(state.image)
 
-            let data = new FormData()
-            data.append('latitude', state.latitude)
-            data.append('longitude', state.longitude)
-            data.append('jobtask_documentation', state.image)
-            console.log(data.values)
+            let formData = new FormData()
+            // data.append('location_latitude', state.latitude)
+            // data.append('location_longitude', state.longitude)
+            // data.append('jobtask_documentation', state.image)
+            formData.append('location_latitude', state.latitude)
+            formData.append('location_longitude', state.longitude)
+            formData.append('jobtask_documentation', state.image)
+            // console.log(data.values)
 
             axios({
                 method: 'post',
                 url: `${baseUrl}/jobtask-result/3`,
-                data: data,
+                data: formData,
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data'
