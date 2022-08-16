@@ -5,7 +5,7 @@ import { useIsidentilStore } from '../store/isidentil-store';
 
 import CKEditor from '@ckeditor/ckeditor5-vue'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { reactive } from '@vue/reactivity';
+import { reactive, ref } from '@vue/reactivity';
 
 const isidentilStore = useIsidentilStore()
 
@@ -108,16 +108,8 @@ const configEditor = {
                                     </div>
                                 </div>
 
-                                <!-- diganti dengan select 2 -->
-                                <div class="grid">
-                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Anggota Pelaksana </label>
-                                    <div class="mt-1 flex rounded-md shadow-sm">
-                                        <select2 :data="data" :value="data"></select2>
-                                    </div>
-                                </div>
 
                                 <div>
-                                    {{reporting.factos}}
                                     <label class="block text-sm font-medium text-gray-700"> Fakta - fakta </label>
                                     <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.factos"></ckeditor>
                                 </div>
