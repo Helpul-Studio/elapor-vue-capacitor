@@ -30,7 +30,7 @@ const baseUrl = `https://elapor.helpulstudio.com/storage/`
 
 			<!--Title-->
 			<div class="font-sans">
-				<p class="text-base md:text-sm font-bold" > <p class="btn btn-xs capitalize text-base md:text-sm font-bold no-underline hover:underline">Ke Halaman Utama</p></p>
+				<p class="btn btn-xs capitalize text-base md:text-sm font-bold no-underline hover:underline">Ke Halaman Utama</p>
                 <div class="flex justify-between my-2">
                     <h4 class=" font-sans break-normal text-gray-900 text-md "><span class="font-bold">Kejadian :</span> {{jobtaskDetail.report_place}}</h4>
                     <p>{{jobtaskDetail.report_date}}</p>
