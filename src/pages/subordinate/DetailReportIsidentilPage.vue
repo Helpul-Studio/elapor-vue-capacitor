@@ -88,6 +88,8 @@ const baseUrl = `https://elapor.helpulstudio.com/storage/`
 				<p class="text-base font-bold md:text-xl leading-none mb-2">{{newsDetail.principal[0].name}}</p>
 				<p class="text-gray-600 text-xs md:text-base">Jabatan : {{newsDetail.principal[0].occupation}}</p>
 			</div> -->
+            <!-- <router-link to="/edit-isidentil" class="btn btn-sm  bg-yellow-500 text-slate-800 border-none mx-2" v-if="isidentilDetail.report_note === null" >Edit Laporan</router-link> -->
+            <button class="btn btn-sm  bg-rose-700 border-none" v-if="isidentilDetail.report_note === null" @click="isidentilStore.deleteIsidentil(isidentilDetail.job_task_result_id)">Hapus Laporan</button>
 		</div>
 		<!--/Author-->
 

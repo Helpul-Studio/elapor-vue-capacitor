@@ -113,6 +113,22 @@ export const useJobtaskStore = defineStore({
             }).catch(err => {
                 console.log(err)
             })
+        },
+
+        deleteJobtaskResult(state){
+            const authStore = useAuthStore()
+            const token = authStore.getToken
+            axios.delete(`${baseUrl}/report/delete-report/${state}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(result => {
+                alert(result.data.message)
+                router.push('/reporting-history-isidentil')
+            }).catch(err => {
+                console.log(err)
+                alert(err)
+            })
         }
     }
 })

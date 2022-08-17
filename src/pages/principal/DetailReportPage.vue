@@ -55,7 +55,9 @@ const send = () => {
 
                 <div class="justify-between my-2 text-md">
                     <h4 class=" font-sans break-normal text-gray-900 text-md "><span class="font-bold">Status :</span></h4>
-                    <p>{{jobtaskPrincipalDetail.job_task_status}}</p>
+                    <p>{{jobtaskPrincipalDetail.job_task_status}} <span v-if="jobtaskPrincipalDetail.job_task_status == 'Ditugaskan' || jobtaskPrincipalDetail.job_task_status == 'Menunggu Konfirmasi'">: 
+                    <div v-for="jobtaskName in jobtaskPrincipalDetail.jobtask_subordinate" :key="jobtaskName">{{jobtaskName.subordinate.name}}</div>
+                    </span></p>
                 </div>
 
                 <p class="text-md md:text-base mt-10 font-bold text-slate-800 mb-3">Kategori : {{jobtaskPrincipalDetail.sector.sector_name}}</p>

@@ -7,7 +7,11 @@ const baseUrl = 'https://elapor.helpulstudio.com/api';
 export const useSubordinateStore = defineStore({
     id: 'subordinate-store',
     state: () => ({
-        subordinate: []
+        subordinate: [
+            { value: '1', label: 'Batman' },
+            { value: '2', label: 'Robin' },
+            { value: 'joker', label: 'Joker' }
+        ]
     }),
 
     getters: {
@@ -24,7 +28,16 @@ export const useSubordinateStore = defineStore({
                 }
             }).then(result => {
                 console.log(result.data.data)
-                this.subordinate = result.data.data
+                let data = result.data.data
+                const constSubordinate = data.map(item => {
+                    const container = {}
+
+                    container.value = item.user_id
+                    container.label = item.name
+
+                    return container
+                })
+                this.subordinate = constSubordinate
             }).catch(err => {
                 console.log(err)
                 alert(err)

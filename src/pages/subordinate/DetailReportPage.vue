@@ -90,6 +90,7 @@ const baseUrl = `https://elapor.helpulstudio.com/storage/`
 				<p class="text-base font-bold md:text-xl leading-none mb-2">{{newsDetail.principal[0].name}}</p>
 				<p class="text-gray-600 text-xs md:text-base">Jabatan : {{newsDetail.principal[0].occupation}}</p>
 			</div> -->
+            <button class="btn btn-sm  bg-rose-700 border-none" v-if="jobtaskDetail.report_note === null" @click="jobtaskStore.deleteJobtaskResult(jobtaskDetail.job_task_result_id)">Hapus Tugas</button>
 		</div>
 		<!--/Author-->
 
