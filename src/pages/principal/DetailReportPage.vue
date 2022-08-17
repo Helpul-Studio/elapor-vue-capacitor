@@ -3,7 +3,7 @@ import Bottombar from '../../components/Bottombar.vue';
 import Topbar from '../../components/Topbar.vue';
 
 import { useJobtaskPrincipalStore } from '../../store/jobtask-principal-store';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, reactive } from 'vue';
 
 const jobtaskPrincipalStore = useJobtaskPrincipalStore()
 
@@ -11,6 +11,17 @@ const jobtaskPrincipalDetail = computed(() => jobtaskPrincipalStore.getJobtaskPr
 
 const baseUrl = `https://elapor.helpulstudio.com/storage/`
 
+const instruction = reactive({
+    sector_id : '',
+    job_task_name : '',
+    job_task_place : '',
+    job_task_date : '',
+    job_task_note : ''
+})
+
+const send = () => {
+    
+}
 
 </script>
 
@@ -101,7 +112,22 @@ const baseUrl = `https://elapor.helpulstudio.com/storage/`
 				<p class="text-gray-600 text-xs md:text-base">Jabatan : {{newsDetail.principal[0].occupation}}</p>
 			</div> -->
             <div class=" flex" >
-                <button class="btn btn-sm  bg-yellow-500 text-slate-800 border-none" v-if="jobtaskPrincipalDetail.jobtask_result.length > 0" @click="jobtaskPrincipalStore.deleteJobtaskPrincipal(jobtaskPrincipalDetail.job_task_id)">Beri Arahan</button>
+                <form @submit.prevent="jobtaskPrincipalStore.addInstruction(jobtaskPrincipalDetail.job_task_id, instruction, jobtaskPrincipalDetail)" enctype="multipart/form-data" v-if="jobtaskPrincipalDetail.jobtask_result.length > 0 && jobtaskPrincipalDetail.job_task_status != 'Selesai'">
+                        <div class="">
+                            <p class="text-xl text-center font-bold">Form Pekerjaan</p>
+                            <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                                <div class="grid">
+                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Pengarahan </label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" placeholder="pengarahan" v-model="instruction.job_task_note">
+                                    </div>
+                                </div>     
+                            </div>
+                            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                <button type="submit" class="btn-sm capitalize inline-flex justify-center  border border-transparent shadow-sm bg-yellow-500 text-slate-800 border-none text-sm font-medium rounded-md btn focus:outline-none">Beri Pengarahan</button>
+                            </div>
+                        </div>
+                    </form>
                 <button class="btn btn-sm  bg-rose-700 border-none" v-else-if="jobtaskPrincipalDetail.jobtask_result.length == 0" @click="jobtaskPrincipalStore.deleteJobtaskPrincipal(jobtaskPrincipalDetail.job_task_id)">Hapus Tugas</button>
             </div>
 		</div>
