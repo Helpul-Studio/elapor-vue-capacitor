@@ -37,6 +37,7 @@ export const useIsidentilStore = defineStore({
             formData.append('report_prediction', state.report_prediction)
             formData.append('report_steps_taken', state.report_steps_taken)
             formData.append('report_recommendation', state.report_recomendation)
+            formData.append('report_teamwise', state.report_teamwise)
 
             axios({
                 method: 'post',
@@ -48,6 +49,7 @@ export const useIsidentilStore = defineStore({
                 }
             }).then(result => {
                 console.log(result)
+                router.push('/reporting-history-isidentil')
             }).catch(err => {
                 console.log(err)
             })

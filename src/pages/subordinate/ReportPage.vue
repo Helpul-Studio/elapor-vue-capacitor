@@ -38,7 +38,8 @@ const reporting = reactive({
     report_analysis : null,
     report_prediction : null,
     report_steps_taken : null,
-    report_recomendation : null
+    report_recomendation : null,
+    report_teamwise: null
 })
 
 
@@ -163,6 +164,11 @@ const send = () => {
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700"> Prediksi </label>
                                     <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.report_prediction"></ckeditor>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700"> Anggota Terlibat </label>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.report_teamwise"></ckeditor>
                                 </div>
 
                                 <div>

@@ -38,22 +38,22 @@ const send = () => {
 			<!--Title-->
 			<div class="font-sans">
 				<p class="btn btn-xs capitalize text-base md:text-sm font-bold no-underline hover:underline">Ke Halaman Utama</p>
-                <div class="justify-between my-2 text-sm">
+                <div class="justify-between my-2 text-md">
                     <h4 class=" font-sans break-normal text-gray-900 "><span class="font-bold">Judul :</span></h4>
                     <p>{{jobtaskPrincipalDetail.job_task_name}}</p>
                 </div>
 
-                <div class="justify-between my-2 text-sm">
+                <div class="justify-between my-2 text-md">
                     <h4 class=" font-sans break-normal text-gray-900 text-md "><span class="font-bold">Tempat :</span></h4>
                     <p>{{jobtaskPrincipalDetail.job_task_place}}</p>
                 </div>
 
-                <div class="justify-between my-2 text-sm">
+                <div class="justify-between my-2 text-md">
                     <h4 class=" font-sans break-normal text-gray-900 text-md "><span class="font-bold">Tanggal :</span></h4>
                     <p>{{jobtaskPrincipalDetail.job_task_date}}</p>
                 </div>
 
-                <div class="justify-between my-2 text-sm">
+                <div class="justify-between my-2 text-md">
                     <h4 class=" font-sans break-normal text-gray-900 text-md "><span class="font-bold">Status :</span></h4>
                     <p>{{jobtaskPrincipalDetail.job_task_status}}</p>
                 </div>
@@ -90,6 +90,11 @@ const send = () => {
                     </div>
 
                     <div>
+                        <h4 class="font-bold">Anggota Terlibat</h4>
+                        <p v-html="jobtaskPrincipalDetail.jobtask_result[0].report_teamwise"></p>
+                    </div>
+
+                    <div>
                         <h4 class="font-bold">Rekomendasi</h4>
                         <p v-html="jobtaskPrincipalDetail.jobtask_result[0].report_recommendation"></p>
                     </div>
@@ -105,29 +110,31 @@ const send = () => {
 		</div>
 
 		<!--Author-->
+        <div class="mx-5" v-if="jobtaskPrincipalDetail.jobtask_result[0]">
+            <img class="w-10 h-10 my-5 rounded-full " :src="`${baseUrl}${jobtaskPrincipalDetail.jobtask_result[0].subordinate.user_photo}`" alt="Avatar of Author">
+            <div class="flex-1 px-2">
+                <p class="text-base font-bold md:text-xl leading-none mb-2">{{jobtaskPrincipalDetail.jobtask_result[0].subordinate.name}}</p>
+                <p class="text-gray-600 text-xs md:text-base">Jabatan : {{jobtaskPrincipalDetail.jobtask_result[0].subordinate.occupation}}</p>
+            </div>
+        </div>
 		<div class="flex w-full items-center mx-auto font-sans px-4 py-5">
-			<!-- <img class="w-10 h-10 rounded-full mr-4" :src="`${baseUrl}${newsDetail.principal[0].user_photo}`" alt="Avatar of Author">
-			<div class="flex-1 px-2">
-				<p class="text-base font-bold md:text-xl leading-none mb-2">{{newsDetail.principal[0].name}}</p>
-				<p class="text-gray-600 text-xs md:text-base">Jabatan : {{newsDetail.principal[0].occupation}}</p>
-			</div> -->
             <div class=" flex" >
                 <form @submit.prevent="jobtaskPrincipalStore.addInstruction(jobtaskPrincipalDetail.job_task_id, instruction, jobtaskPrincipalDetail)" enctype="multipart/form-data" v-if="jobtaskPrincipalDetail.jobtask_result.length > 0 && jobtaskPrincipalDetail.job_task_status != 'Selesai'">
-                        <div class="">
-                            <p class="text-xl text-center font-bold">Form Pekerjaan</p>
-                            <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                                <div class="grid">
-                                    <label for="company-website" class="block text-sm font-medium text-gray-700"> Pengarahan </label>
-                                    <div class="mt-1 flex rounded-md shadow-sm">
-                                        <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" placeholder="pengarahan" v-model="instruction.job_task_note">
-                                    </div>
-                                </div>     
-                            </div>
-                            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                <button type="submit" class="btn-sm capitalize inline-flex justify-center  border border-transparent shadow-sm bg-yellow-500 text-slate-800 border-none text-sm font-medium rounded-md btn focus:outline-none">Beri Pengarahan</button>
-                            </div>
+                    <div class="">
+                        <p class="text-xl text-center font-bold">Form Pengarahan</p>
+                        <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                            <div class="grid">
+                                <label for="company-website" class="block text-sm font-medium text-gray-700"> Pengarahan </label>
+                                <div class="mt-1 flex rounded-md shadow-sm">
+                                    <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" placeholder="pengarahan" v-model="instruction.job_task_note">
+                                </div>
+                            </div>     
                         </div>
-                    </form>
+                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                            <button type="submit" class="btn-sm capitalize inline-flex justify-center  border border-transparent shadow-sm bg-yellow-500 text-slate-800 border-none text-sm font-medium rounded-md btn focus:outline-none">Beri Pengarahan</button>
+                        </div>
+                    </div>
+                </form>
                 <button class="btn btn-sm  bg-rose-700 border-none" v-else-if="jobtaskPrincipalDetail.jobtask_result.length == 0" @click="jobtaskPrincipalStore.deleteJobtaskPrincipal(jobtaskPrincipalDetail.job_task_id)">Hapus Tugas</button>
             </div>
 		</div>

@@ -2,15 +2,19 @@
 import Bottombar from '../../components/Bottombar.vue';
 import Topbar from '../../components/Topbar.vue';
 import { useIsidentilStore } from '../../store/isidentil-store';
+import { useSectorStore } from '../../store/sector-store';
+import { computed } from '@vue/reactivity';
 
 import { Geolocation } from '@capacitor/geolocation';
 
 import CKEditor from '@ckeditor/ckeditor5-vue'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { reactive, ref } from '@vue/reactivity';
+import { onMounted } from '@vue/runtime-core';
 
 const isidentilStore = useIsidentilStore()
-
+const sectorStore = useSectorStore()
+const sectorDatas = computed(() => sectorStore.getSector)
 let images = ref('')
 
 const reporting = reactive({
@@ -26,7 +30,12 @@ const reporting = reactive({
     report_analysis : null,
     report_prediction : null,
     report_steps_taken : null,
-    report_recomendation : null
+    report_recomendation : null,
+    report_teamwise : null
+})
+
+onMounted(() => {
+    sectorStore.fetchSector()
 })
 
 const handleFileUpload = async(e) => {
@@ -100,8 +109,7 @@ getCurrentPosition()
                                     <label for="company-website" class="block text-sm font-medium text-gray-700"> Bidang </label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
                                         <select name="" id="" class="w-full p-2 text-sm rounded-md" v-model="reporting.sector_id">
-                                            <option value="1">Sosial Budaya</option>
-                                            <option value="2">Keamanan</option>
+                                            <option v-for="data in sectorDatas" :key="data" v-bind:value="data.sector_id">{{data.sector_name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -145,6 +153,11 @@ getCurrentPosition()
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700"> Prediksi </label>
                                     <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.report_prediction"></ckeditor>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700"> Anggota Terlibat </label>
+                                    <ckeditor :editor="editor" class="w-20"  :config="configEditor" v-model="reporting.report_teamwise"></ckeditor>
                                 </div>
 
                                 <div>

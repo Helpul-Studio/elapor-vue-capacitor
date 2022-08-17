@@ -64,6 +64,11 @@ const baseUrl = `https://elapor.helpulstudio.com/storage/`
                     </div>
 
                     <div>
+                        <h4 class="font-bold">Anggota Terlibat</h4>
+                        <p v-html="jobtaskDetail.report_teamwise"></p>
+                    </div>
+
+                    <div>
                         <h4 class="font-bold">Rekomendasi</h4>
                         <p v-html="jobtaskDetail.report_recommendation"></p>
                     </div>

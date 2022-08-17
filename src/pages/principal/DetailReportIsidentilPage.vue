@@ -2,14 +2,17 @@
 import Bottombar from '../../components/Bottombar.vue';
 import Topbar from '../../components/Topbar.vue';
 
-import { useIsidentilStore } from '../../store/isidentil-store';
-import { computed, onMounted } from 'vue';
+import { useIsidentilPrincipalStore } from '../../store/isidentil-principal-store';
+import { computed, onMounted, reactive } from 'vue';
 
-const isidentilStore = useIsidentilStore()
-const isidentilDetail = computed(() => isidentilStore.getIsidentilReporting)
+const isidentilPrincipalStore = useIsidentilPrincipalStore()
+const isidentilDetail = computed(() => isidentilPrincipalStore.getIsidentilDataDetail)
 
 const baseUrl = `https://elapor.helpulstudio.com/storage/`
 
+const instruction = reactive({
+    report_note: ''
+})
 
 </script>
 
@@ -82,12 +85,32 @@ const baseUrl = `https://elapor.helpulstudio.com/storage/`
 		</div>
 
 		<!--Author-->
+        <div class="mx-5">
+            <img class="w-10 h-10 rounded-full mr-4" :src="`${baseUrl}${isidentilDetail.subordinate.user_photo}`" alt="Avatar of Author">
+            <div class="flex-1 px-2">
+                <p class="text-base font-bold md:text-xl leading-none mb-2">{{isidentilDetail.subordinate.name}}</p>
+                <p class="text-gray-600 text-xs md:text-base">Jabatan : {{isidentilDetail.subordinate.occupation}}</p>
+            </div>
+        </div>
 		<div class="flex w-full items-center mx-auto font-sans px-4 py-5">
-			<!-- <img class="w-10 h-10 rounded-full mr-4" :src="`${baseUrl}${newsDetail.principal[0].user_photo}`" alt="Avatar of Author">
-			<div class="flex-1 px-2">
-				<p class="text-base font-bold md:text-xl leading-none mb-2">{{newsDetail.principal[0].name}}</p>
-				<p class="text-gray-600 text-xs md:text-base">Jabatan : {{newsDetail.principal[0].occupation}}</p>
-			</div> -->
+            <div class=" flex" >
+                <form @submit.prevent="isidentilPrincipalStore.addInstruction(isidentilDetail.job_task_result_id, instruction)" enctype="multipart/form-data" v-if="isidentilDetail.report_note === null">
+                    <div class="">
+                        <p class="text-xl text-center font-bold">Form Pengarahan</p>
+                        <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                            <div class="grid">
+                                <label for="company-website" class="block text-sm font-medium text-gray-700"> Pengarahan </label>
+                                <div class="mt-1 flex rounded-md shadow-sm">
+                                    <input type="text" name="company-website" id="company-website" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 p-2" placeholder="pengarahan" v-model="instruction.report_note">
+                                </div>
+                            </div>     
+                        </div>
+                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                            <button type="submit" class="btn-sm capitalize inline-flex justify-center  border border-transparent shadow-sm bg-yellow-500 text-slate-800 border-none text-sm font-medium rounded-md btn focus:outline-none">Beri Pengarahan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 		</div>
 		<!--/Author-->
 
