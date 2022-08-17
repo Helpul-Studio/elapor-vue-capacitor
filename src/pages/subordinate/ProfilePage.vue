@@ -27,39 +27,41 @@ onMounted(() => {
             <div class="mx-auto">
                 <div class="avatar">
                     <div class="w-24 rounded-full">
-                        <img :src="`${baseUrl}${profile.user_photo}`" />
+                        <img :src="`${baseUrl}${profile.data_user.user_photo}`" />
                     </div>
                 </div>
             </div>
             <div class="grid grid-cols-3 mt-10 justify-between text-center">
                 <div>
                     <p class="font-semibold text-md mx-auto">Tugas Selesai</p>
-                    <!-- <p class="text-sm mx-auto">{{profile[1].status_pekerjaan[0].selesai}}</p> -->
+                    <p class="text-sm mx-auto">{{profile.done}}</p>
                 </div>
                 <div>
                     <p class="font-semibold text-md mx-auto">Ditugaskan</p>
-                    <!-- <p class="text-sm mx-auto">{{profile[1].status_pekerjaan[1].ditugaskan}}</p> -->
+                    <p class="text-sm mx-auto">{{profile.assigned}}</p>
                 </div>
                 <div>
                     <p class="font-semibold text-md mx-auto">Pending</p>
-                    <!-- <p class="text-sm mx-auto">{{profile[1].status_pekerjaan[2].menunggu_konfirmasi}}</p> -->
+                    <p class="text-sm mx-auto">{{profile.waiting}}</p>
                 </div>
             </div>
             <div id="profile-section" class="mt-5 gap-y-4 grid">
                 <div>
                     <h4 class="text-md font-semibold text-gray-300">Nama</h4>
-                    <p class="text-md">{{profile.name}}</p>
+                    <p class="text-md">{{profile.data_user.name}}</p>
                 </div>
                 <div>
                     <h4 class="text-md font-semibold text-gray-300">Email</h4>
-                    <p class="text-md">{{profile.email}}</p>
+                    <p class="text-md">{{profile.data_user.email}}</p>
                 </div>
                 <div>
                     <h4 class="text-md font-semibold text-gray-300">Pangkat/Jabatan</h4>
-                    <p class="text-md">{{profile.occupation}}</p>
+                    <p class="text-md">{{profile.data_user.occupation}}</p>
                 </div>
                 <div>
-                    <button class="btn w-full">Ubah Profil</button>
+                <router-link to="/profile-edit">
+                    <button class="btn w-full mt-4">Ubah Profil</button>
+                </router-link>
                 </div>
             </div>
         </main>

@@ -61,12 +61,35 @@ export const useAuthStore = defineStore({
                     Authorization: `Bearer ${this.token}`
                 }
             }).then(result => {
-                console.log(result.data.data)
-                this.user = result.data.data.data_user
+                this.user = result.data.data
                 this.role = result.data.data.data_user.user_role
             }).catch(err => {
                 console.log(err)
             })
-        }
+        },
+
+        updateProfile(state){
+            let formData = new FormData()
+            formData.append('email', state.email)
+            formData.append('user_photo', state.user_photo)
+
+            axios({
+                method: 'post',
+                url: `${baseUrl}/update-profile`,
+                data: formData,
+                headers: {
+                    'Authorization': `Bearer ${this.token}`,
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(result => {
+                this.fetchUser();
+                router.push('/profile')
+                console.log(result)
+            }).catch(err => {
+                console.log(err)
+            })
+        },
+
+
     }
 })
