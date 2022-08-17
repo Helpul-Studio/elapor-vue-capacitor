@@ -9,7 +9,7 @@ export const useAuthStore = defineStore({
     id: 'auth',
     state: () => ({
         token: localStorage.getItem('token'),
-        user : null,
+        user : '',
         role : ''
     }),
 
@@ -56,15 +56,13 @@ export const useAuthStore = defineStore({
         },
 
         fetchUser(){
-            const authStore = useAuthStore()
-            const token = authStore.getToken
             axios.get(`${baseUrl}/profile`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${this.token}`
                 }
             }).then(result => {
-                console.log(result.data.data)
-                this.user = result.data.data
+                console.log(result.data.data.data_user)
+                this.user = result.data.data.data_user
             }).catch(err => {
                 console.log(err)
             })

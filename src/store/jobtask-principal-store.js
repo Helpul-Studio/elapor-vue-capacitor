@@ -54,8 +54,15 @@ export const useJobtaskPrincipalStore = defineStore({
         deleteJobtaskPrincipal(state){
             const authStore = useAuthStore()
             const token = authStore.getToken
-            axios.delete(`${baseUrl}/jobtask/delete-jobtask/6`, {
-
+            axios.delete(`${baseUrl}/jobtask/delete-jobtask/${state}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(result => {
+                console.log(result)
+                router.push('/working-principal')
+            }).catch(err => {
+                alert(err)
             })
         },
 
@@ -68,6 +75,30 @@ export const useJobtaskPrincipalStore = defineStore({
                 job_task_place : state.job_task_place,
                 job_task_date : state.job_task_date,
                 subordinate: state.subordinate
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(result => {
+                console.log(result)
+                router.push('/working-principal')
+            }).catch(err => {
+                console.log(err)
+            })
+        },
+
+        addInstruction(...state){
+            const authStore = useAuthStore()
+            const token = authStore.getToken
+            const id = state[0]
+            // console.log(state[2])
+            axios.put(`${baseUrl}/jobtask/update-jobtask/${id}`, {
+                sector_id: state[2].sector_id,
+                job_task_name: state[2].job_task_name,
+                job_task_place: state[2].job_task_place,
+                job_task_date: state[2].job_task_date,
+                job_task_note: state[1].job_task_note,
+                job_task_status: 'Selesai'
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`

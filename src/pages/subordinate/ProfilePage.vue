@@ -24,7 +24,7 @@ onMounted(() => {
         <!-- top bar -->
 
         <main class=" mx-5 mt-10 grid mb-20 gap-y-4 z-10 py-2">
-            <div class="mx-auto">
+            <!-- <div class="mx-auto">
                 <div class="avatar">
                     <div class="w-24 rounded-full">
                         <img :src="`${baseUrl}${profile[0].user_photo}`" />
@@ -61,7 +61,7 @@ onMounted(() => {
                 <div>
                     <button class="btn w-full">Ubah Profil</button>
                 </div>
-            </div>
+            </div> -->
         </main>
 
         <!-- bottom bar -->
