@@ -13,6 +13,7 @@ import Loginpage from '../pages/LoginPage.vue'
 import Historypage from '../pages/subordinate/HistoryPage.vue'
 import HistoryIsidentilPage from '../pages/subordinate/HistoryIsidentilPage.vue'
 import ProfilePage from '../pages/subordinate/ProfilePage.vue'
+import EditProfilePage from '../pages/subordinate/EditProfilePage.vue'
 import WorkingPage from '../pages/subordinate/WorkingPage.vue'
 import WorkingPrincipalPage from '../pages/principal/WorkingPage.vue'
 import ReportPage from '../pages/subordinate/ReportPage.vue'
@@ -88,6 +89,13 @@ const routes = [
     {
         path: '/profile',
         component : ProfilePage,
+        meta : {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/profile-edit',
+        component : EditProfilePage,
         meta : {
             requireAuth: true
         }
