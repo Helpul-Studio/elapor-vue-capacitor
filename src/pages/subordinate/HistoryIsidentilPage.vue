@@ -41,8 +41,8 @@ const detailIsidentil = (state) => {
                     <div class="card-actions justify-end flex">
                         <button @click="detailIsidentil(isidentil.report_task_id)" class="btn btn-sm border-2">Lihat Detail Laporan</button>
                     </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </main>
 

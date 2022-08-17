@@ -69,6 +69,7 @@ export const useJobtaskPrincipalStore = defineStore({
         addJobtask(state){
             const authStore = useAuthStore()
             const token = authStore.getToken
+            console.log(state.subordinate)
             axios.post(`${baseUrl}/jobtask/add-jobtask`, {
                 sector_id : state.sector_id,
                 job_task_name : state.job_task_name,

@@ -1,6 +1,7 @@
 <script setup>
 import Bottombar from '../../components/Bottombar.vue';
 import Topbar from '../../components/Topbar.vue';
+import Multiselect from '@vueform/multiselect'
 
 import { useJobtaskPrincipalStore } from '../../store/jobtask-principal-store'
 import { useSectorStore } from '../../store/sector-store';
@@ -27,15 +28,21 @@ const subordinateStore = useSubordinateStore()
 const sectorStore = useSectorStore()
 
 const sectorDatas = computed(() => sectorStore.getSector)
-const subordinateDatas = computed(() => subordinateStore.getSubordinate)
+const subordinateDatas = computed(() => subordinateStore.subordinate)
 
 const jobtask = reactive({
     sector_id: null,
     job_task_name : null,
     job_task_place : null,
     job_task_date : null,
-    subordinate : null
+    subordinate : []
 })
+
+const option = [
+    ,
+]
+
+let value = ref([])
 
 onMounted(() => {
     sectorStore.fetchSector()
@@ -46,7 +53,6 @@ const send = () => {
     console.log('run')
     jobtaskPrincipalStore.addJobtask(jobtask)
 }
-
 
 </script>
 
@@ -129,26 +135,17 @@ const send = () => {
                                 <div class="grid">
                                     <label for="company-website" class="block text-sm font-medium text-gray-700"> Penugasan </label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
-                                        <select class="form-select appearance-none
-                                            block
-                                            w-full
-                                            px-3
-                                            py-1.5
-                                            text-sm
-                                            font-normal
-                                            text-slate-800
-                                            bg-white bg-clip-padding bg-no-repeat
-                                            border-none
-                                            rounded
-                                            transition
-                                            ease-in-out
-                                            m-0
-                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example" v-model="jobtask.subordinate">
-                                                <option v-for="data in subordinateDatas" :key="data" v-bind:value="data.user_id">{{data.name}}</option>
-                                            </select>
+
+                                            <Multiselect
+                                            v-model="jobtask.subordinate"
+                                            mode="tags"
+                                            :close-on-select="false"
+                                            :searchable="true"
+                                            :create-option="true"
+                                            :options="subordinateDatas"
+                                            />
                                     </div>
                                 </div>
-                                
                                 
                             </div>
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -192,3 +189,4 @@ const send = () => {
   padding-left: 20px;
 }
 </style>
+<style src="@vueform/multiselect/themes/default.css"></style>

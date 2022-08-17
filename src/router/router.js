@@ -17,6 +17,7 @@ import Historypage from '../pages/subordinate/HistoryPage.vue'
 import HistoryIsidentilPage from '../pages/subordinate/HistoryIsidentilPage.vue'
 import ProfilePage from '../pages/subordinate/ProfilePage.vue'
 import EditProfilePage from '../pages/subordinate/EditProfilePage.vue'
+import EditIsidentilPage from '../pages/subordinate/EditIsidentilPage.vue'
 import WorkingPage from '../pages/subordinate/WorkingPage.vue'
 import WorkingPrincipalPage from '../pages/principal/WorkingPage.vue'
 import ReportPage from '../pages/subordinate/ReportPage.vue'
@@ -99,6 +100,13 @@ const routes = [
     {
         path: '/profile-edit',
         component : EditProfilePage,
+        meta : {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/edit-isidentil',
+        component : EditIsidentilPage,
         meta : {
             requireAuth: true
         }
