@@ -6,6 +6,9 @@ import App from './App.vue'
 import './index.css'
 import {Select2} from 'select2-vue-component'
 
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 import {App as CapacitorApp} from '@capacitor/app'
 
 CapacitorApp.addListener('backButton', ({canGoBack}) => {
@@ -23,6 +26,7 @@ const app = createApp(App)
 
 app.component('select2', Select2)
 
+app.use(VueSweetalert2)
 app.use(pinia)
 app.use(CKEditor)
 app.use(router)

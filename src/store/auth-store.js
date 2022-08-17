@@ -1,19 +1,22 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 import router from "../router/router";
+import { inject } from "vue";
 
 const baseUrl = 'https://elapor.helpulstudio.com/api';
 
 export const useAuthStore = defineStore({
     id: 'auth',
     state: () => ({
-        token: '',
-        user : []
+        token: localStorage.getItem('token'),
+        user : null,
+        role : ''
     }),
 
     getters: {
         getToken: (state) => state.token,
-        getUser: (state) => state.user
+        getUser: (state) => state.user,
+        getRole: (state) => state.role
     },
 
     actions: {
@@ -23,9 +26,14 @@ export const useAuthStore = defineStore({
                 password : state.password
             }).then(result => {
                 console.log(result.data.data.access_token)
-                this.token = result.data.data.access_token
-                console.log(this.token)
-                router.push('/')
+                localStorage.setItem('token', result.data.data.access_token)
+                this.token = localStorage.getItem('token')
+                this.role = result.data.data.user_role
+                if(this.role == 'subordinate') {
+                    router.push('/')
+                } else {
+                    router.push('/principal')
+                }
             }).catch(err => {
                 alert(err.response.data.meta.message)
             })
@@ -39,11 +47,26 @@ export const useAuthStore = defineStore({
                     Authorization: `Bearer ${this.token}`
                 }
             }).then(res => {
-                this.token = null
+                localStorage.removeItem('token')
                 console.log('Berhasil keluar')
                 router.push('/login')
             }).catch(err => {
                 console.log(err.response.data.message)
+            })
+        },
+
+        fetchUser(){
+            const authStore = useAuthStore()
+            const token = authStore.getToken
+            axios.get(`${baseUrl}/profile`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(result => {
+                console.log(result.data.data)
+                this.user = result.data.data
+            }).catch(err => {
+                console.log(err)
             })
         }
     }
