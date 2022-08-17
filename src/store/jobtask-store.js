@@ -40,6 +40,7 @@ export const useJobtaskStore = defineStore({
             })
         },
 
+        //
         createReport(...state){
             this.jobTaskId = state[1]
             console.log(state)
