@@ -5,10 +5,19 @@ import Topbar from '../../components/Topbar.vue';
 import { useNewsStore } from '../../store/news-store';
 import { computed, onMounted } from 'vue';
 
+import { useAuthStore } from '../../store/auth-store';
+
+const authStore = useAuthStore()
+
+const role = computed(() => authStore.getRole)
+
 const newsStore = useNewsStore()
 
 const newsDetail = computed(() => newsStore.getNewsDetails)
 
+onMounted(() => {
+    authStore.fetchUser()
+})
 
 const baseUrl = `https://elapor.helpulstudio.com/storage/`
 
@@ -43,6 +52,12 @@ const baseUrl = `https://elapor.helpulstudio.com/storage/`
 			<p class="py-6">
 				{{newsDetail.news_field}}
 			</p>
+        	<div class="flex justify-between" v-if="role == 'subordinate'" />
+			
+			<div class="flex justify-between" v-else>
+			<p class="text-base md:text-sm font-bold"> <router-link to="/" href="#" class="btn btn-xs capitalize text-base md:text-sm font-bold no-underline hover:underline">Edit Berita</router-link></p>
+
+			</div>
 
 
 			<!--/ Post Content-->

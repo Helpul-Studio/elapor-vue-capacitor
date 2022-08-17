@@ -64,7 +64,7 @@ const update = () => {
                 </div>
 
             <div>
-                <label class="block mb-2 bg-slate text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload file</label>
+                <label class="block mb-2 bg-slate text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Photo</label>
                 <input class="flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-gray-300 p-2" id="file_input" type="file" ref="file" @change="handleFileUpload" >
             </div>
 

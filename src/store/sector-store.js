@@ -18,7 +18,6 @@ export const useSectorStore = defineStore({
         fetchSector(){
             axios.get(`${baseUrl}/getAllSector`, {
             }).then(result => {
-                console.log(result.data)
                 this.sector = result.data.data
             })
         }
