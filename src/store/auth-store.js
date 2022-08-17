@@ -61,8 +61,9 @@ export const useAuthStore = defineStore({
                     Authorization: `Bearer ${this.token}`
                 }
             }).then(result => {
-                console.log(result.data.data.data_user)
+                console.log(result.data.data)
                 this.user = result.data.data.data_user
+                this.role = result.data.data.data_user.user_role
             }).catch(err => {
                 console.log(err)
             })

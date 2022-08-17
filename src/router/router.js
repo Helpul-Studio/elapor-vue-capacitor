@@ -5,6 +5,7 @@ import { useAuthStore } from "../store/auth-store";
 import HomepagePrincipal from '../pages/principal/HomePage.vue'
 import DetailReportPagePrincipal from '../pages/principal/DetailReportPage.vue'
 import AddJobtaskPage from '../pages/principal/AddJobtaskPage.vue'
+import IsidentilPage from '../pages/principal/IsidentilPage.vue'
 
 //subordinate
 import Homepage from '../pages/subordinate/HomePage.vue'
@@ -103,6 +104,13 @@ const routes = [
     {
         path: '/working-principal',
         component : WorkingPrincipalPage,
+        meta : {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/working-isidentil-principal',
+        component : IsidentilPage,
         meta : {
             requireAuth: true
         }

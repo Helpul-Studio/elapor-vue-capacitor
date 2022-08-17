@@ -4,7 +4,7 @@ import { useAuthStore } from "./auth-store";
 
 const baseUrl = 'https://elapor.helpulstudio.com/api';
 
-export default useIsidentilPrincipalStore = defineStore({
+export const useIsidentilPrincipalStore = defineStore({
     id: 'isidentil-principal',
     state: () => ({
         isidentilData : [],
@@ -31,10 +31,18 @@ export default useIsidentilPrincipalStore = defineStore({
             })
         },
 
-        fetchIsidentilDetailData(token){
+        fetchIsidentilDetailData(state){
             const authStore = useAuthStore()
             const token = authStore.getToken
-
+            axios.get(`${baseUrl}/report-view/${state}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(result => {
+                console.log(result)
+            }).catch(err => {
+                console.log(err)
+            })
         }
     }
 })
