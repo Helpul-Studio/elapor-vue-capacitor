@@ -66,6 +66,7 @@ export const useJobtaskStore = defineStore({
             formData.append('report_prediction', state.report_prediction)
             formData.append('report_steps_taken', state.report_steps_taken)
             formData.append('report_recommendation', state.report_recomendation)
+            formData.append('report_teamwise', state.report_teamwise)
             // console.log(data.values)
 
             axios({
@@ -90,6 +91,7 @@ export const useJobtaskStore = defineStore({
             ).then(result => {
                 console.log(result)
                 alert(result)
+                router.push('/working')
             }).catch(err => {
                 console.log(err)
                 alert(err)

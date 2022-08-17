@@ -22,24 +22,23 @@ onMounted(() => {
         <Topbar/>
         <!-- top bar -->
 
-        <!-- <main class=" mx-5 mt-10 grid mb-20 gap-y-4 z-10 py-2">
+        <main class=" mx-5 mt-10 grid mb-20 gap-y-4 z-10 py-2">
             
             <div class="flex justify-between">
-                <p class="my-auto">Total pekerjaan : {{jobtaskPrincipals.length}}</p>
-                <router-link to="/add-jobtask" class="btn btn-sm">Buat Tugas</router-link>
+                <p class="my-auto">Total pekerjaan : {{isidentilPrincipals.length}}</p>
             </div>
-            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md" v-for="(jobtaskPrincipal) in jobtaskPrincipals" :key="jobtaskPrincipal.job_task_id">
+            <div class="card border-l-4 border-red-500 card-sm bg-base-100 shadow-md" v-for="isidentilPrincipal in isidentilPrincipals" :key="isidentilPrincipal">
                 <div class="card-body">
-                    <h2 class="card-title">{{jobtaskPrincipal.job_task_name}}</h2>
-                    <p>Tanggal : {{jobtaskPrincipal.job_task_date}}</p>
-                    <p>Lokasi : {{jobtaskPrincipal.job_task_place}}</p>
-                    <p>Status : {{jobtaskPrincipal.job_task_status}}</p>
+                    <h2 class="card-title">{{isidentilPrincipal.report_about.substring(0,40)+".."}}</h2>
+                    <p>Tanggal : {{isidentilPrincipal.report_date}}</p>
+                    <p>Lokasi : {{isidentilPrincipal.report_place}}</p>
+                    <p>Informasi : {{isidentilPrincipal.report_source_information}}</p>
                     <div class="card-actions justify-end flex">
-                        <button class="btn btn-sm" @click="jobtaskPrincipalStore.fetchJobtaskPrincipalDetail(jobtaskPrincipal.job_task_id)">Lihat Detail Tugas</button>
+                        <button class="btn btn-sm" @click="isidentilPrincipalStore.fetchIsidentilDetailData(isidentilPrincipal.job_task_result_id)">Lihat Detail Kasus</button>
                     </div>
                 </div>
             </div>
-        </main> -->
+        </main>
 
         <!-- bottom bar -->
         <Bottombar/>

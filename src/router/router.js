@@ -6,6 +6,7 @@ import HomepagePrincipal from '../pages/principal/HomePage.vue'
 import DetailReportPagePrincipal from '../pages/principal/DetailReportPage.vue'
 import AddJobtaskPage from '../pages/principal/AddJobtaskPage.vue'
 import IsidentilPage from '../pages/principal/IsidentilPage.vue'
+import DetailIsidentilPagePrincipal from '../pages/principal/DetailReportIsidentilPage.vue'
 
 //subordinate
 import Homepage from '../pages/subordinate/HomePage.vue'
@@ -118,6 +119,13 @@ const routes = [
     {
         path: '/detail-reporting-principal',
         component: DetailReportPagePrincipal,
+        meta : {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/detail-isidentil-principal',
+        component: DetailIsidentilPagePrincipal,
         meta : {
             requireAuth: true
         }
