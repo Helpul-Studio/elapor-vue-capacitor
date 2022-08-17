@@ -7,6 +7,8 @@ import DetailReportPagePrincipal from '../pages/principal/DetailReportPage.vue'
 import AddJobtaskPage from '../pages/principal/AddJobtaskPage.vue'
 import IsidentilPage from '../pages/principal/IsidentilPage.vue'
 import DetailIsidentilPagePrincipal from '../pages/principal/DetailReportIsidentilPage.vue'
+import AddNewsPage from '../pages/principal/AddNewsPage.vue'
+
 
 //subordinate
 import Homepage from '../pages/subordinate/HomePage.vue'
@@ -141,6 +143,13 @@ const routes = [
     {
         path: '/add-jobtask',
         component: AddJobtaskPage,
+        meta : {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/add-news',
+        component: AddNewsPage,
         meta : {
             requireAuth: true
         }

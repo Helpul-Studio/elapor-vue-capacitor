@@ -37,6 +37,38 @@ export const useNewsStore = defineStore({
             this.newsDetail = this.news[state]
             console.log(this.newsDetail)
             router.push('/news-detail')
-        }
+        }, 
+
+        
+        sendNews(state){
+            const authStore = useAuthStore()
+            const token = authStore.getToken
+            console.log(state)
+
+            let formData = new FormData()
+            formData.append('sector_id', state.sector_id)
+            formData.append('news_title', state.news_title)
+            formData.append('news_field', state.news_field)
+            formData.append('news_image', state.news_image)
+            // console.log(data.values)
+
+            axios({
+                method: 'post',
+                url: `${baseUrl}/news/add-news`,
+                data: formData,
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data'
+                }
+            } 
+
+            ).then(result => {
+                console.log(result)
+                router.push('/')
+            }).catch(err => {
+                console.log(err)
+                alert(err)
+            })
+        },
     }
 })
