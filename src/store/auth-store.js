@@ -49,7 +49,7 @@ export const useAuthStore = defineStore({
             }).then(res => {
                 localStorage.removeItem('token')
                 console.log('Berhasil keluar')
-                router.push('/login')
+                window.location.replace('/login')
             }).catch(err => {
                 console.log(err.response.data.message)
             })
@@ -72,6 +72,7 @@ export const useAuthStore = defineStore({
             let formData = new FormData()
             formData.append('email', state.email)
             formData.append('user_photo', state.user_photo)
+            formData.append('name', state.name)
 
             axios({
                 method: 'post',

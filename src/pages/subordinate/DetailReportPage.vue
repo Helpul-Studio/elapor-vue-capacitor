@@ -35,47 +35,47 @@ const baseUrl = `https://elapor.helpulstudio.com/storage/`
                 <!-- <p class="text-sm md:text-base font-normal text-gray-600 mb-3">Kategori : {{newsDetail.sector.sector_name}}</p> -->
                 <div class="mb-4 space-y-6">
                     <div>
-                        <img :src="`${baseUrl}${jobtaskDetail.jobtask_documentation}`" class="max-w-full my-10 h-auto rounded-lg" alt="">
+                        <img :src="`${baseUrl}${jobtaskDetail.jobtask_result[0].jobtask_documentation}`" class="max-w-full my-10 h-auto rounded-lg" alt="">
                     </div>
                     
                     <div class="text-md">
                         <h4 class="font-bold">Sumber Informasi</h4>
-                        <p v-html="jobtaskDetail.report_source_information"></p>
+                        <p v-html="jobtaskDetail.jobtask_result[0].report_source_information"></p>
                     </div>
 
                     <div>
                         <h4 class="font-bold">Aktifitas</h4>
-                        <div class="list-decimal" v-html="jobtaskDetail.report_activities"></div>
+                        <div class="list-decimal" v-html="jobtaskDetail.jobtask_result[0].report_activities"></div>
                     </div>
 
                     <div>
                         <h4 class="font-bold">Analisis</h4>
-                        <div class="list-decimal" v-html="jobtaskDetail.report_analysis"></div>
+                        <div class="list-decimal" v-html="jobtaskDetail.jobtask_result[0].report_analysis"></div>
                     </div>
 
                     <div>
                         <h4 class="font-bold">Prediksi</h4>
-                        <p v-html="jobtaskDetail.report_prediction"></p>
+                        <p v-html="jobtaskDetail.jobtask_result[0].report_prediction"></p>
                     </div>
 
                     <div>
                         <h4 class="font-bold">Langkah langkah yang diambil</h4>
-                        <p v-html="jobtaskDetail.report_steps_taken"></p>
+                        <p v-html="jobtaskDetail.jobtask_result[0].report_steps_taken"></p>
                     </div>
 
                     <div>
                         <h4 class="font-bold">Anggota Terlibat</h4>
-                        <p v-html="jobtaskDetail.report_teamwise"></p>
+                        <p v-html="jobtaskDetail.jobtask_result[0].report_teamwise"></p>
                     </div>
 
                     <div>
                         <h4 class="font-bold">Rekomendasi</h4>
-                        <p v-html="jobtaskDetail.report_recommendation"></p>
+                        <p v-html="jobtaskDetail.jobtask_result[0].report_recommendation"></p>
                     </div>
 
                     <div>
                         <h4 class="font-bold">Arahan Kepala</h4>
-                        <p v-html="jobtaskDetail.report_note"></p>
+                        <p v-html="jobtaskDetail.job_task_note"></p>
                     </div>
                 </div>
 			</div>
@@ -90,7 +90,7 @@ const baseUrl = `https://elapor.helpulstudio.com/storage/`
 				<p class="text-base font-bold md:text-xl leading-none mb-2">{{newsDetail.principal[0].name}}</p>
 				<p class="text-gray-600 text-xs md:text-base">Jabatan : {{newsDetail.principal[0].occupation}}</p>
 			</div> -->
-            <button class="btn btn-sm  bg-rose-700 border-none" v-if="jobtaskDetail.report_note === null" @click="jobtaskStore.deleteJobtaskResult(jobtaskDetail.job_task_result_id)">Hapus Tugas</button>
+            <button class="btn btn-sm  bg-rose-700 border-none" v-if="jobtaskDetail.jobtask_result[0].report_note === null" @click="jobtaskStore.deleteJobtaskResult(jobtaskDetail.jobtask_result[0].job_task_result_id)">Hapus Tugas</button>
 		</div>
 		<!--/Author-->
 

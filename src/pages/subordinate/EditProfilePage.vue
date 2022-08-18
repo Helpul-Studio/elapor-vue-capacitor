@@ -21,6 +21,7 @@ let images = ref('')
 
 
 const updateUser = reactive({
+    name : '',
     email : '',
     user_photo: images,
 });
@@ -62,7 +63,10 @@ const update = () => {
                     <h4 class="text-md font-semibold text-gray-600">Email : {{profile.data_user.email}}</h4>
                     <input type="text" placeholder=""  class="flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-gray-300 p-2" v-model="updateUser.email" required/>
                 </div>
-
+                <div>
+                    <h4 class="text-md font-semibold text-gray-600">Nama : {{profile.data_user.name}}</h4>
+                    <input type="text" placeholder=""  class="flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-gray-300 p-2" v-model="updateUser.name" required/>
+                </div>
             <div>
                 <label class="block mb-2 bg-slate text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Photo</label>
                 <input class="flex-1 block w-full rounded-none rounded-r-md sm:text-sm border border-gray-300 p-2" id="file_input" type="file" ref="file" @change="handleFileUpload" >

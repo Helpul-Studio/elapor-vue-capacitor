@@ -49,15 +49,10 @@ const baseUrl = `https://elapor.helpulstudio.com/storage/`
 
 
 			<!--Lead Para-->
-			<p class="py-6">
-				{{newsDetail.news_field}}
+			<p class="py-6" v-html="newsDetail.news_field">
 			</p>
         	<div class="flex justify-between" v-if="role == 'subordinate'" />
 			
-			<div class="flex justify-between" v-else>
-			<p class="text-base md:text-sm font-bold"> <router-link to="/" href="#" class="btn btn-xs capitalize text-base md:text-sm font-bold no-underline hover:underline">Edit Berita</router-link></p>
-
-			</div>
 
 
 			<!--/ Post Content-->

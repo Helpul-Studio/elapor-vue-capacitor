@@ -73,7 +73,7 @@ const baseUrl = `https://elapor.helpulstudio.com/storage/`
 
                     <div>
                         <h4 class="font-bold">Arahan Kepala</h4>
-                        <p v-html="isidentilDetail.report_note"></p>
+                        <p v-html="isidentilDetail"></p>
                     </div>
                 </div>
 			</div>
