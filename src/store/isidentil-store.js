@@ -41,20 +41,20 @@ export const useIsidentilStore = defineStore({
 
             console.log(formData)
 
-            // axios({
-            //     method: 'post',
-            //     url: `${baseUrl}/report-data`,
-            //     data: formData,
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`,
-            //         'Content-Type': 'multipart/form-data'
-            //     }
-            // }).then(result => {
-            //     console.log(result)
-            //     router.push('/reporting-history-isidentil')
-            // }).catch(err => {
-            //     alert(err)
-            // })
+            axios({
+                method: 'post',
+                url: `${baseUrl}/report-data`,
+                data: formData,
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(result => {
+                console.log(result)
+                router.push('/reporting-history-isidentil')
+            }).catch(err => {
+                alert(err)
+            })
         },
 
         getIsidentil(){

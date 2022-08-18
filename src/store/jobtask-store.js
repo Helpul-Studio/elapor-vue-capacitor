@@ -91,8 +91,8 @@ export const useJobtaskStore = defineStore({
                 // }
             ).then(result => {
                 console.log(result)
-                alert(result)
-                router.push('/working')
+                alert(result.data.meta.message)
+                router.push('/reporting-history')
             }).catch(err => {
                 console.log(err)
                 alert(err)
@@ -108,8 +108,8 @@ export const useJobtaskStore = defineStore({
                     Authorization: `Bearer ${token}`
                 }
             }).then(result => {
-                console.log(result.data.data[0].jobtask_result[0])
-                this.jobTaskDetail = result.data.data[0].jobtask_result[0]
+                console.log(result.data.data[0])
+                this.jobTaskDetail = result.data.data[0]
                 router.push('/detail-reporting')
             }).catch(err => {
                 console.log(err)

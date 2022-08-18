@@ -103,7 +103,7 @@ const send = () => {
 
                     <div>
                         <h4 class="font-bold">Arahan Kepala</h4>
-                        <p v-html="jobtaskPrincipalDetail.jobtask_result[0].report_note"></p>
+                        <p v-html="jobtaskPrincipalDetail.job_task_note"></p>
                     </div>
                 </div>
 			</div>

@@ -90,7 +90,7 @@ const send = () => {
                 <div class="mt-5 ">
                     <form @submit.prevent="send" enctype="multipart/form-data">
                         <div class="shadow sm:rounded-md sm:overflow-hidden">
-                            <p class="text-xl text-center font-bold">Form Pekerjaan </p>
+                            <p class="text-xl text-center font-bold">Form Tambah Pengumuman </p>
                             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                 
                                 <div class="grid">
@@ -139,7 +139,7 @@ const send = () => {
                                 
                             </div>
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white btn focus:outline-none">Tambah Berita</button>
+                                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white btn focus:outline-none">Tambah Pengumuman</button>
                             </div>
                         </div>
                     </form>
